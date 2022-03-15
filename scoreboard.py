@@ -1,24 +1,30 @@
 from turtle import Turtle
 
-FONT = ("Arial", 120, "normal")
+FONT = ("Courier", 40, "normal")
 ALIGNMENT = "center"
 
 class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
-        self.color("white")
-        self.penup()
-        self.hideturtle()
-        self.goto(0, 250)
+        self.create_scoreboard()
         self.l_score = 0
         self.r_score = 0
-        self.show_score()
+        self.update_scoreboard()
+        self.write(f"{self.l_score} - {self.r_score}", align=ALIGNMENT, font=FONT)
 
-    def show_score(self):
-        self.write(f"Score - Left:{self.l_score} - Right:{self.r_score}")
+    def update_scoreboard(self):
+        self.clear()
+        self.create_scoreboard()
+        self.goto(0, 250)
+        self.write(f"{self.l_score} - {self.r_score}", align=ALIGNMENT, font=FONT)
 
     def left_score(self):
         self.l_score += 1
 
     def right_score(self):
         self.r_score += 1
+
+    def create_scoreboard(self):
+        self.color("white")
+        self.penup()
+        self.hideturtle()
